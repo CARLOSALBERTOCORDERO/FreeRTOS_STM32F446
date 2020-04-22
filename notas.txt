@@ -1,0 +1,7 @@
+https://www.youtube.com/watch?v=Ds1xcyn-vEU&list=PLfExI9i0v1sn-GXGKpH1Rgjta04-30Z6u&index=9
+https://os.mbed.com/handbook/CMSIS-RTOS
+http://www.keil.com/support/man/docs/rlarm/rlarm_ar_active_tasks.htm
+http://www.keil.com/support/docs/4080.htm
+https://www.youtube.com/watch?v=Iyc0vk4jG1E
+https://www.youtube.com/watch?v=elgkseFUpmk&t=97s
+https://www.st.com/en/development-tools/winidea-open.html#overview
