@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "DaVinciIntegration"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"cmsis_os.h": "c",
+			"rte_cpap1.h": "c",
+			"rte_cpap2.h": "c",
+			"rte_cpap3.h": "c"
+		}
+	}
+}
