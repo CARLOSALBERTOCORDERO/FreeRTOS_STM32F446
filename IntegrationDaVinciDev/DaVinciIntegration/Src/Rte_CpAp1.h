@@ -84,11 +84,11 @@ extern VAR(UInt16, RTE_VAR_NOINIT) Rte_Graph_122_Cnt_u16;
  *********************************************************************************************************************/
 #  define RTE_START_SEC_CPAP3_APPL_CODE
 #  include "MemMap.h" /* PRQA S 5087 */ /* MD_MSR_MemMap */
-FUNC(void, RTE_CPAP3_APPL_CODE) CaAP3_server(void); /* PRQA S 0786, 3449, 0624 */ /* MD_Rte_0786, MD_Rte_3449, MD_Rte_0624 */
+FUNC(void, RTE_CPAP3_APPL_CODE) CaAP3_server(UInt16 inCnt_u16); /* PRQA S 0786, 3449, 0624 */ /* MD_Rte_0786, MD_Rte_3449, MD_Rte_0624 */
 #  define RTE_STOP_SEC_CPAP3_APPL_CODE
 #  include "MemMap.h" /* PRQA S 5087 */ /* MD_MSR_MemMap */
 
-#  define Rte_Call_Pp_CpAp3Cnt_CpAp3Cntfnc() (CaAP3_server(), ((Std_ReturnType)RTE_E_OK)) /* PRQA S 3453 */ /* MD_MSR_FctLikeMacro */
+#  define Rte_Call_Pp_CpAp3Cnt_CpAp3Cntfnc(arg1) (CaAP3_server(arg1), ((Std_ReturnType)RTE_E_OK)) /* PRQA S 3453 */ /* MD_MSR_FctLikeMacro */
 
 
 # endif /* !defined(RTE_CORE) */

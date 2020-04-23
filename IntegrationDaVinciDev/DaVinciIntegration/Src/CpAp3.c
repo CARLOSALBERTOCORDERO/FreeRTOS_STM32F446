@@ -14,9 +14,9 @@
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
  *             File:  CpAp3.c
- *           Config:  C:/DENSO_CCM_Repository/dautosar/128_fmc_rccm_001_BuildEnv_Base_APPL/010_BSW_project/fmc_rh850f1k_rccm.dpa
+ *           Config:  C:/DENSO_CCM_Repository/dautosar_result/128_fmc_rccm_001_BuildEnv_Base_APPL/010_BSW_project/fmc_rh850f1k_rccm.dpa
  *        SW-C Type:  CpAp3
- *  Generation Time:  2020-04-22 00:23:19
+ *  Generation Time:  2020-04-23 01:37:05
  *
  *        Generator:  MICROSAR RTE Generator Version 4.21.0
  *                    RTE Core Version 1.21.0
@@ -86,7 +86,7 @@
  *
  * Runnable prototype:
  * ===================
- *   void CaAP3_server(void)
+ *   void CaAP3_server(UInt16 inCnt_u16)
  *
  *********************************************************************************************************************/
 /**********************************************************************************************************************
@@ -99,7 +99,7 @@
  * DO NOT CHANGE THIS COMMENT!           << End of documentation area >>                    DO NOT CHANGE THIS COMMENT!
  *********************************************************************************************************************/
 
-FUNC(void, CpAp3_CODE) CaAP3_server(void) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD_Rte_3206 */
+FUNC(void, CpAp3_CODE) CaAP3_server(UInt16 inCnt_u16) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD_Rte_3206 */
 {
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << Start of runnable implementation >>             DO NOT CHANGE THIS COMMENT!

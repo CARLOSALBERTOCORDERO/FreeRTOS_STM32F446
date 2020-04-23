@@ -84,7 +84,7 @@ extern VAR(UInt16, RTE_VAR_NOINIT) Rte_Graph_122_Cnt_u16;
 #  define RTE_RUNNABLE_CaAP3_server CaAP3_server
 # endif
 
-FUNC(void, CpAp3_CODE) CaAP3_server(void); /* PRQA S 0786, 3449, 0624 */ /* MD_Rte_0786, MD_Rte_3449, MD_Rte_0624 */
+FUNC(void, CpAp3_CODE) CaAP3_server(UInt16 inCnt_u16); /* PRQA S 0786, 3449, 0624 */ /* MD_Rte_0786, MD_Rte_3449, MD_Rte_0624 */
 
 # define CpAp3_STOP_SEC_CODE
 # include "CpAp3_MemMap.h" /* PRQA S 5087 */ /* MD_MSR_MemMap */

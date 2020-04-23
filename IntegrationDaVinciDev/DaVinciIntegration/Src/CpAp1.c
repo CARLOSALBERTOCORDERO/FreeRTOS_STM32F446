@@ -14,9 +14,9 @@
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
  *             File:  CpAp1.c
- *           Config:  C:/DENSO_CCM_Repository/dautosar/128_fmc_rccm_001_BuildEnv_Base_APPL/010_BSW_project/fmc_rh850f1k_rccm.dpa
+ *           Config:  C:/DENSO_CCM_Repository/dautosar_result/128_fmc_rccm_001_BuildEnv_Base_APPL/010_BSW_project/fmc_rh850f1k_rccm.dpa
  *        SW-C Type:  CpAp1
- *  Generation Time:  2020-04-21 23:57:08
+ *  Generation Time:  2020-04-23 01:33:13
  *
  *        Generator:  MICROSAR RTE Generator Version 4.21.0
  *                    RTE Core Version 1.21.0
@@ -86,7 +86,7 @@
  * =========================
  *   Server Invocation:
  *   ------------------
- *   Std_ReturnType Rte_Call_Pp_CpAp3Cnt_CpAp3Cntfnc(void)
+ *   Std_ReturnType Rte_Call_Pp_CpAp3Cnt_CpAp3Cntfnc(UInt16 inCnt_u16)
  *     Synchronous Server Invocation. Timeout: None
  *
  *********************************************************************************************************************/
