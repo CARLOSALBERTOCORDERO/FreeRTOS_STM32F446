@@ -49,10 +49,17 @@
 
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef huart2;
-
 osThreadId defaultTaskHandle;
-/* USER CODE BEGIN PV */
 
+/* USER CODE BEGIN PV */
+/*NOTE: FreeRTOS specific BEGIN*/
+osThreadId CpAp1TaskHandle;
+osThreadId CpAp2TaskHandle;
+osTimerId CpAp1TimerHandle;
+osTimerId CpAp2TimerHandle;
+void CallbackCpAp1Timer(void const * arguments);
+void CallbackCpAp2Timer(void const * arguments);
+/*NOTE: FreeRTOS specific END*/
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -60,6 +67,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 void StartDefaultTask(void const * argument);
+
 
 /* USER CODE BEGIN PFP */
 
@@ -112,7 +120,12 @@ int main(void)
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
+  /*NOTE: FreeRTOS specific BEGIN*/
+  osTimerDef(myTimerCpAp01, CallbackCpAp1Timer);
+  CpAp1TimerHandle = osTimerCreate(osTimer(myTimerCpAp01), osTimerPeriodic, NULL);
+  osTimerDef(myTimerCpAp02, CallbackCpAp2Timer);
+  CpAp2TimerHandle = osTimerCreate(osTimer(myTimerCpAp02), osTimerPeriodic, NULL);
+  /*NOTE: FreeRTOS specific END*/
   /* USER CODE END RTOS_TIMERS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -121,19 +134,27 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(defaultTask,StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
-
   /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
+  /*NOTE: FreeRTOS specific BEGIN*/
+  
+  osThreadDef(Task_CpAp1,Os_Task_Task_CpAp1_1s, osPriorityNormal, 0, 128);
+  CpAp1TaskHandle = osThreadCreate(osThread(Task_CpAp1), NULL);
+  osThreadDef(Task_CpAp2, Os_Task_Task_CpAp2_2s, osPriorityAboveNormal, 0, 128);
+  CpAp2TaskHandle = osThreadCreate(osThread(Task_CpAp2), NULL);
+  /*NOTE: FreeRTOS specific END*/
   /* USER CODE END RTOS_THREADS */
 
-  /* Start scheduler */
+ /* Start scheduler */
   osKernelStart();
  
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  /*NOTE: FreeRTOS specific BEGIN*/
+
+  /*NOTE: FreeRTOS specific END*/
   while (1)
   {
     /* USER CODE END WHILE */
@@ -265,11 +286,14 @@ static void MX_GPIO_Init(void)
 void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN 5 */
-		uint8_t txData[] = "running default thread message\r\n";
+  uint8_t txData[] = "running default thread message\r\n";
+  osTimerStart(CpAp1TimerHandle,1000);
+  osTimerStart(CpAp2TimerHandle,2000);
   /* Infinite loop */
   for(;;)
   {
-		HAL_UART_Transmit(&huart2, &txData[0], sizeof(txData), 4);
+
+    HAL_UART_Transmit(&huart2, &txData[0], sizeof(txData), 4);
     osDelay(1000);
   }
   /* USER CODE END 5 */ 
@@ -283,10 +307,16 @@ void StartDefaultTask(void const * argument)
  *********************************************************************************************************************/
 TASK(Task_CpAp1_1s) /* PRQA S 3408, 1503 */ /* MD_Rte_3408, MD_MSR_Unreachable */
 {
-
-  /* call runnable */
-  CpAp1_1s(); /* PRQA S 2987 */ /* MD_Rte_2987 */
-
+  uint32_t notifiedFlag = 0x00;
+  for(;;)
+  {
+    xTaskNotifyWait(pdFALSE, 0xFF, &notifiedFlag, portMAX_DELAY);
+    if(0x01 == (0x01 & notifiedFlag))
+    {
+      /* call runnable */
+      CpAp1_1s(); /* PRQA S 2987 */ /* MD_Rte_2987 */
+    }
+  }
   //(void)TerminateTask(); /* PRQA S 3417 */ /* MD_Rte_Os */
 } /* PRQA S 6010, 6030, 6050, 6080 */ /* MD_MSR_STPTH, MD_MSR_STCYC, MD_MSR_STCAL, MD_MSR_STMIF */
 
@@ -298,13 +328,32 @@ TASK(Task_CpAp1_1s) /* PRQA S 3408, 1503 */ /* MD_Rte_3408, MD_MSR_Unreachable *
  *********************************************************************************************************************/
 TASK(Task_CpAp2_2s) /* PRQA S 3408, 1503 */ /* MD_Rte_3408, MD_MSR_Unreachable */
 {
-
-  /* call runnable */
-  CpAp2_2s(); /* PRQA S 2987 */ /* MD_Rte_2987 */
-
+  uint32_t notifiedFlag = 0x00;
+  for(;;)
+  {
+    xTaskNotifyWait(pdFALSE, 0xFF, &notifiedFlag, portMAX_DELAY);
+    if(0x01 == (0x01 & notifiedFlag))
+    {
+      /* call runnable */
+      CpAp2_2s(); /* PRQA S 2987 */ /* MD_Rte_2987 */
+    }
+  }
  //(void)TerminateTask(); /* PRQA S 3417 */ /* MD_Rte_Os */
 } /* PRQA S 6010, 6030, 6050, 6080 */ /* MD_MSR_STPTH, MD_MSR_STCYC, MD_MSR_STCAL, MD_MSR_STMIF */
 
+/*NOTE: FreeRTOS specific BEGIN*/
+void CallbackCpAp1Timer(void const * arguments)
+{
+  xTaskNotify(CpAp1TaskHandle,0x01,eSetBits);
+  
+}
+
+void CallbackCpAp2Timer(void const * arguments)
+{
+  xTaskNotify(CpAp2TaskHandle,0x01,eSetBits);
+}
+
+/*NOTE: FreeRTOS specific END*/
 
  /**
   * @brief  Period elapsed callback in non blocking mode
