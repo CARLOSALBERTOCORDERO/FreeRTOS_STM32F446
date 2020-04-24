@@ -5,3 +5,5 @@ http://www.keil.com/support/docs/4080.htm
 https://www.youtube.com/watch?v=Iyc0vk4jG1E
 https://www.youtube.com/watch?v=elgkseFUpmk&t=97s
 https://www.st.com/en/development-tools/winidea-open.html#overview
+
+winIdea: http://www.isystem.si/SWUpdates/winIDEAOpen9_17_100_93121.exe
