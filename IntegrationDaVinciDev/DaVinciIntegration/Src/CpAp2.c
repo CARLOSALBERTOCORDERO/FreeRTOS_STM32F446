@@ -16,7 +16,7 @@
  *             File:  CpAp2.c
  *           Config:  C:/DENSO_CCM_Repository/dautosar_result/128_fmc_rccm_001_BuildEnv_Base_APPL/010_BSW_project/fmc_rh850f1k_rccm.dpa
  *        SW-C Type:  CpAp2
- *  Generation Time:  2020-04-23 01:35:12
+ *  Generation Time:  2020-04-23 17:34:25
  *
  *        Generator:  MICROSAR RTE Generator Version 4.21.0
  *                    RTE Core Version 1.21.0
@@ -37,6 +37,7 @@
  *********************************************************************************************************************/
 
 #include "Rte_CpAp2.h"
+#include "uart.h"
 
 
 /**********************************************************************************************************************
@@ -76,6 +77,12 @@
  *
  **********************************************************************************************************************
  *
+ * Input Interfaces:
+ * =================
+ *   Explicit S/R API:
+ *   -----------------
+ *   Std_ReturnType Rte_Read_Pp_Cnt2CpAp1_Cnt_u16(UInt16 *data)
+ *
  * Output Interfaces:
  * ==================
  *   Explicit S/R API:
@@ -99,6 +106,15 @@ FUNC(void, CpAp2_CODE) CpAp2_2s(void) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD
  * DO NOT CHANGE THIS COMMENT!           << Start of runnable implementation >>             DO NOT CHANGE THIS COMMENT!
  * Symbol: CpAp2_2s
  *********************************************************************************************************************/
+  UInt16 cnt_16 = 0;
+  UInt8 txData[] = "cnt_16 has the value: \r\n";
+  UInt8 txCnt[] = " \r\n";
+
+  HAL_UART_Transmit(getUART(), &txData[0], sizeof(txData), 3);
+  Rte_Read_Pp_Cnt2CpAp1_Cnt_u16(&cnt_16);
+  txCnt[0] = (UInt8)((cnt_16 % 10) + 0x30);
+  HAL_UART_Transmit(getUART(), &txCnt[0], sizeof(txCnt), 2);
+  Rte_Write_Pp_Cnt2CpAp1_Cnt_u16(cnt_16);
 
 
 /**********************************************************************************************************************

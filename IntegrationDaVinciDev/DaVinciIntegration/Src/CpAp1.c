@@ -106,7 +106,9 @@ FUNC(void, CpAp1_CODE) CpAp1_1s(void) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD
  * DO NOT CHANGE THIS COMMENT!           << Start of runnable implementation >>             DO NOT CHANGE THIS COMMENT!
  * Symbol: CpAp1_1s
  *********************************************************************************************************************/
-
+  UInt16 cnt_16 = 0;
+  Rte_Read_Pp_Cnt_Cnt_u16(&cnt_16);
+  Rte_Call_Pp_CpAp3Cnt_CpAp3Cntfnc(cnt_16);
 
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << End of runnable implementation >>               DO NOT CHANGE THIS COMMENT!

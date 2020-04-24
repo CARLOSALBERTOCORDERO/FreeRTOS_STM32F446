@@ -9,7 +9,12 @@
 			"cmsis_os.h": "c",
 			"rte_cpap1.h": "c",
 			"rte_cpap2.h": "c",
-			"rte_cpap3.h": "c"
+			"rte_cpap3.h": "c",
+			"main.h": "c",
+			"stm32f4xx_hal.h": "c",
+			"stm32f4xx.h": "c",
+			"uart.h": "c",
+			"stm32f4xx_hal_uart.h": "c"
 		}
 	}
 }

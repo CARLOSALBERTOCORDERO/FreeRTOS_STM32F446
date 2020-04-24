@@ -105,7 +105,11 @@ FUNC(void, CpAp3_CODE) CaAP3_server(UInt16 inCnt_u16) /* PRQA S 0624, 3206 */ /*
  * DO NOT CHANGE THIS COMMENT!           << Start of runnable implementation >>             DO NOT CHANGE THIS COMMENT!
  * Symbol: CaAP3_server
  *********************************************************************************************************************/
+    UInt16 cnt_16 = 0;
 
+    cnt_16 = inCnt_u16;
+    cnt_16++;
+    Rte_Write_Pp_Cnt_Cnt_u16(cnt_16);
 
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << End of runnable implementation >>               DO NOT CHANGE THIS COMMENT!

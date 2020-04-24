@@ -73,6 +73,13 @@ extern VAR(UInt16, RTE_VAR_NOINIT) Rte_Graph_122_Cnt_u16;
 # ifndef RTE_CORE
 
 /**********************************************************************************************************************
+ * Rte_Read_<p>_<d> (explicit S/R communication with isQueued = false)
+ *********************************************************************************************************************/
+#  define Rte_Read_Pp_Cnt2CpAp1_Cnt_u16 Rte_Read_CpAp2_Pp_Cnt2CpAp1_Cnt_u16
+#  define Rte_Read_CpAp2_Pp_Cnt2CpAp1_Cnt_u16(data) (*(data) = Rte_Graph_122_Cnt_u16, ((Std_ReturnType)RTE_E_OK)) /* PRQA S 3453 */ /* MD_MSR_FctLikeMacro */
+
+
+/**********************************************************************************************************************
  * Rte_Write_<p>_<d> (explicit S/R communication with isQueued = false)
  *********************************************************************************************************************/
 #  define Rte_Write_Pp_Cnt2CpAp1_Cnt_u16 Rte_Write_CpAp2_Pp_Cnt2CpAp1_Cnt_u16

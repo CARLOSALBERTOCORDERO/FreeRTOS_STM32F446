@@ -1350,3 +1350,4 @@ davinciintegration\main.o: ../Src/Os_MemMap.h
 davinciintegration\main.o: ../Src/Os_MemMap_OsCodeInt.h
 davinciintegration\main.o: ../Src/Os_MemMap_OsSectionsInt.h
 davinciintegration\main.o: ../Src/Os_MemMap_StacksInt.h
+davinciintegration\main.o: ../Src/uart.h

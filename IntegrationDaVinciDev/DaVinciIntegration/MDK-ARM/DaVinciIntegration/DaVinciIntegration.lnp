@@ -8,6 +8,7 @@
 "davinciintegration\cpap1.o"
 "davinciintegration\cpap2.o"
 "davinciintegration\cpap3.o"
+"davinciintegration\uart.o"
 "davinciintegration\stm32f4xx_hal_rcc.o"
 "davinciintegration\stm32f4xx_hal_rcc_ex.o"
 "davinciintegration\stm32f4xx_hal_flash.o"
