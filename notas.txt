@@ -7,3 +7,5 @@ https://www.youtube.com/watch?v=elgkseFUpmk&t=97s
 https://www.st.com/en/development-tools/winidea-open.html#overview
 
 winIdea: http://www.isystem.si/SWUpdates/winIDEAOpen9_17_100_93121.exe
+STM32cube: https://www.st.com/en/development-tools/stm32cubemx.html
+Keil: https://www2.keil.com/mdk5
